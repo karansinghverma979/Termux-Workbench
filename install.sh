@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # ==============================================================================
-# ⚡ Termux-Matrix: High-Velocity Mobile DevOps & Terminal Operating Matrix
-# 1-Line Automated Installer & Configuration Engine
+# ⚡ Termux-Workbench: High-Velocity Mobile DevOps & Terminal Workstation
+# 1-Line Automated Installer & Modular Architecture Engine
 # ==============================================================================
 
 set -e
@@ -16,7 +16,7 @@ NC='\033[0m'
 echo -e "${CYAN}${BOLD}"
 cat << 'EOF'
  ┌─────────────────────────────────────────────────────────────┐
- │       ⚡ TERMUX-MATRIX : HIGH-VELOCITY MOBILE DEVOPS        │
+ │       ⚡ TERMUX-WORKBENCH : HIGH-VELOCITY MOBILE DEVOPS     │
  │     Ergonomic 2×7 Touch Layout • Dual Prompt • Peer Bridge  │
  └─────────────────────────────────────────────────────────────┘
 EOF
@@ -30,7 +30,8 @@ fi
 
 HOME_DIR="/data/data/com.termux/files/home"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BACKUP_DIR="${HOME_DIR}/.termux_matrix_backup_$(date +%Y%m%d_%H%M%S)"
+WORKBENCH_DIR="${HOME_DIR}/.termux-workbench"
+BACKUP_DIR="${HOME_DIR}/.termux_workbench_backup_$(date +%Y%m%d_%H%M%S)"
 
 echo -e "${CYAN}📦 [1/6] Backing up existing configurations...${NC}"
 mkdir -p "${BACKUP_DIR}"
@@ -78,10 +79,26 @@ clone_or_pull "https://github.com/hlissner/zsh-autopair" "${HOME_DIR}/.zsh/zsh-a
 clone_or_pull "https://github.com/MichaelAquilina/zsh-you-should-use" "${HOME_DIR}/.zsh/zsh-you-should-use"
 clone_or_pull "https://github.com/zsh-users/zsh-history-substring-search" "${HOME_DIR}/.zsh/zsh-history-substring-search"
 
-echo -e "${CYAN}⚙️  [4/6] Deploying matrix configurations...${NC}"
+echo -e "${CYAN}⚙️  [4/6] Deploying modular workbench architecture...${NC}"
+mkdir -p "${WORKBENCH_DIR}"
 mkdir -p "${HOME_DIR}/.termux"
 mkdir -p "${HOME_DIR}/.config"
+mkdir -p "${HOME_DIR}/.local/bin"
 
+# Deploy Modular Directories
+[ -d "${SCRIPT_DIR}/bin" ] && cp -rf "${SCRIPT_DIR}/bin" "${WORKBENCH_DIR}/"
+[ -d "${SCRIPT_DIR}/modules" ] && cp -rf "${SCRIPT_DIR}/modules" "${WORKBENCH_DIR}/"
+[ -d "${SCRIPT_DIR}/profiles" ] && cp -rf "${SCRIPT_DIR}/profiles" "${WORKBENCH_DIR}/"
+[ -d "${SCRIPT_DIR}/scripts" ] && cp -rf "${SCRIPT_DIR}/scripts" "${WORKBENCH_DIR}/"
+
+# Install workbench CLI binary
+if [ -f "${WORKBENCH_DIR}/bin/workbench" ]; then
+    chmod +x "${WORKBENCH_DIR}/bin/workbench"
+    cp -f "${WORKBENCH_DIR}/bin/workbench" "${HOME_DIR}/.local/bin/workbench"
+    chmod +x "${HOME_DIR}/.local/bin/workbench"
+fi
+
+# Deploy active configs
 cp -f "${SCRIPT_DIR}/config/termux.properties" "${HOME_DIR}/.termux/termux.properties"
 cp -f "${SCRIPT_DIR}/config/.zshrc" "${HOME_DIR}/.zshrc"
 cp -f "${SCRIPT_DIR}/config/.tmux.conf" "${HOME_DIR}/.tmux.conf"
@@ -102,12 +119,13 @@ fi
 echo -e "${GREEN}${BOLD}"
 cat << 'EOF'
  ┌─────────────────────────────────────────────────────────────┐
- │       ✨ TERMUX-MATRIX SETUP COMPLETE & OPERATIONAL!         │
+ │       ✨ TERMUX-WORKBENCH SETUP COMPLETE & OPERATIONAL!     │
  └─────────────────────────────────────────────────────────────┘
 EOF
 echo -e "${NC}"
-echo -e "${CYAN}🚀 Next Steps:${NC}"
-echo -e "   1. Restart Termux or execute: ${YELLOW}exec zsh${NC}"
-echo -e "   2. Customize your PC bridge in: ${YELLOW}~/.peer_pc.env${NC}"
-echo -e "   3. Switch prompt themes anytime: ${YELLOW}chship${NC} or ${YELLOW}chp10k${NC}"
-echo -e "   4. Switch terminal tab title: ${YELLOW}title${NC}\n"
+echo -e "${CYAN}🚀 Control Center:${NC}"
+echo -e "   • Switch touch profiles:  ${YELLOW}workbench profile [dev|vim|sysadmin]${NC}"
+echo -e "   • Switch prompt themes:   ${YELLOW}workbench theme${NC} (or ${YELLOW}chship${NC} / ${YELLOW}chp10k${NC})"
+echo -e "   • Pair your workstation:  ${YELLOW}nano ~/.peer_pc.env${NC} ──► ${YELLOW}peer${NC}"
+echo -e "   • Manage tab titles:      ${YELLOW}title${NC}"
+echo -e "   • System status:          ${YELLOW}workbench status${NC}\n"

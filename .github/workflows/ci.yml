@@ -1,4 +1,4 @@
-name: Termux Matrix Validation
+name: Termux Workbench CI
 
 on:
   push:
@@ -23,6 +23,7 @@ jobs:
       - name: Validate Shell Script Syntax
         run: |
           bash -n install.sh
+          bash -n bin/workbench
           for script in scripts/*.sh; do
             if [ -f "$script" ]; then
               bash -n "$script"
