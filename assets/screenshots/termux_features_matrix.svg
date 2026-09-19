@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 500" width="850" height="500">
+  <defs>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1017"/>
+      <stop offset="100%" stop-color="#06070a"/>
+    </linearGradient>
+    <linearGradient id="glowBorder" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="50%" stop-color="#7928ca"/>
+      <stop offset="100%" stop-color="#ff0080"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="850" height="500" rx="16" fill="#050608"/>
+
+  <!-- Title -->
+  <text x="425" y="45" fill="#f7fafc" font-family="'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" text-anchor="middle">⚡ TERMUX-MATRIX CAPABILITY MATRIX</text>
+  <text x="425" y="70" fill="#a0aec0" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" text-anchor="middle">Engineered for mobile touch ergonomics, high-velocity shell control &amp; remote workstation sync</text>
+
+  <!-- 4 Feature Cards -->
+  <!-- Card 1: 2x7 Touch Extra Keys -->
+  <g transform="translate(30, 95)">
+    <rect width="380" height="175" rx="12" fill="url(#cardBg)" stroke="#222838" stroke-width="1.5"/>
+    <rect x="0" y="0" width="380" height="4" rx="2" fill="#00f0ff"/>
+    <text x="24" y="36" fill="#00f0ff" font-family="monospace" font-size="16" font-weight="700">🎮 Ergonomic 2×7 Touch Grid</text>
+    <text x="24" y="65" fill="#e2e8f0" font-family="sans-serif" font-size="12" font-weight="600">• Tactile Unicode Icons (🔁, 🚀, ⏸️, ➖, 🟰, 🔼, ⌨️)</text>
+    <text x="24" y="88" fill="#a0aec0" font-family="sans-serif" font-size="12">• Swipe-Up Popups: ESC, Pipes, Asterisks, Pasting</text>
+    <text x="24" y="111" fill="#a0aec0" font-family="sans-serif" font-size="12">• Session Hotkeys: Ctrl+T (New), Ctrl+1/2 (Switch)</text>
+    <text x="24" y="134" fill="#a0aec0" font-family="sans-serif" font-size="12">• AMOLED True-Black UI with zero screen margin</text>
+    <rect x="24" y="148" width="80" height="18" rx="4" fill="#00f0ff" fill-opacity="0.15"/>
+    <text x="64" y="161" fill="#00f0ff" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">ACTIVE</text>
+  </g>
+
+  <!-- Card 2: Dual Prompt Engine -->
+  <g transform="translate(440, 95)">
+    <rect width="380" height="175" rx="12" fill="url(#cardBg)" stroke="#222838" stroke-width="1.5"/>
+    <rect x="0" y="0" width="380" height="4" rx="2" fill="#7928ca"/>
+    <text x="24" y="36" fill="#d53f8c" font-family="monospace" font-size="16" font-weight="700">🎨 Dual Prompt Engine</text>
+    <text x="24" y="65" fill="#e2e8f0" font-family="sans-serif" font-size="12" font-weight="600">• Live Engine Switching: use-starship ◄► use-p10k</text>
+    <text x="24" y="88" fill="#a0aec0" font-family="sans-serif" font-size="12">• 12 Curated Mobile Starship Presets (Tokyo-Night, Gruvbox)</text>
+    <text x="24" y="111" fill="#a0aec0" font-family="sans-serif" font-size="12">• Fuzzy Interactive FZF Theme Pickers (chship, chp10k)</text>
+    <text x="24" y="134" fill="#a0aec0" font-family="sans-serif" font-size="12">• Permanent Theme Blacklisting Engine (rmship, rmp10k)</text>
+    <rect x="24" y="148" width="95" height="18" rx="4" fill="#d53f8c" fill-opacity="0.15"/>
+    <text x="71" y="161" fill="#d53f8c" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">DUAL RUNTIME</text>
+  </g>
+
+  <!-- Card 3: Dynamic Tab Title Sentinel -->
+  <g transform="translate(30, 295)">
+    <rect width="380" height="175" rx="12" fill="url(#cardBg)" stroke="#222838" stroke-width="1.5"/>
+    <rect x="0" y="0" width="380" height="4" rx="2" fill="#48bb78"/>
+    <text x="24" y="36" fill="#48bb78" font-family="monospace" font-size="16" font-weight="700">🏷️ Dynamic Tab Title Sentinel</text>
+    <text x="24" y="65" fill="#e2e8f0" font-family="sans-serif" font-size="12" font-weight="600">• Sticky Workspace Tags: title -Name dev (🛠️ Dev)</text>
+    <text x="24" y="88" fill="#a0aec0" font-family="sans-serif" font-size="12">• Intelligent Active Process Tracking (⚡ git, ⚡ nvim)</text>
+    <text x="24" y="111" fill="#a0aec0" font-family="sans-serif" font-size="12">• Flicker-Free Filtering: ignores micro-commands (ls, cd)</text>
+    <text x="24" y="134" fill="#a0aec0" font-family="sans-serif" font-size="12">• Visual Failure Sentinel: ❌ icon on command error</text>
+    <rect x="24" y="148" width="85" height="18" rx="4" fill="#48bb78" fill-opacity="0.15"/>
+    <text x="66" y="161" fill="#48bb78" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">AUTOMATED</text>
+  </g>
+
+  <!-- Card 4: Peer Workstation Bridge -->
+  <g transform="translate(440, 295)">
+    <rect width="380" height="175" rx="12" fill="url(#cardBg)" stroke="#222838" stroke-width="1.5"/>
+    <rect x="0" y="0" width="380" height="4" rx="2" fill="#ed8936"/>
+    <text x="24" y="36" fill="#ed8936" font-family="monospace" font-size="16" font-weight="700">💻 Peer Workstation Bridge</text>
+    <text x="24" y="65" fill="#e2e8f0" font-family="sans-serif" font-size="12" font-weight="600">• Sub-Second Dynamic Gateway &amp; Hotspot IP Discovery</text>
+    <text x="24" y="88" fill="#a0aec0" font-family="sans-serif" font-size="12">• Zero-Password SSH Connectivity via Ed25519 Keys</text>
+    <text x="24" y="111" fill="#a0aec0" font-family="sans-serif" font-size="12">• 1-Command Reconnection: peer (with drop auto-recovery)</text>
+    <text x="24" y="134" fill="#a0aec0" font-family="sans-serif" font-size="12">• Centered Boot Telemetry HUD displaying IP &amp; Peer status</text>
+    <rect x="24" y="148" width="100" height="18" rx="4" fill="#ed8936" fill-opacity="0.15"/>
+    <text x="74" y="161" fill="#ed8936" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">FEDERATED</text>
+  </g>
+</svg>

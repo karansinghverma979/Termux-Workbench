@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 780" width="850" height="780">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090a0f"/>
+      <stop offset="100%" stop-color="#020204"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#141721"/>
+      <stop offset="100%" stop-color="#1c202e"/>
+    </linearGradient>
+    <linearGradient id="keyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e2230"/>
+      <stop offset="100%" stop-color="#121520"/>
+    </linearGradient>
+    <linearGradient id="keyActive" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a334d"/>
+      <stop offset="100%" stop-color="#182033"/>
+    </linearGradient>
+    <filter id="cardGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#00f0ff" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Frame Background -->
+  <rect width="850" height="780" rx="16" fill="url(#bgGrad)" stroke="#222838" stroke-width="2" filter="url(#cardGlow)"/>
+
+  <!-- Window Header -->
+  <rect x="0" y="0" width="850" height="42" rx="16" fill="url(#barGrad)"/>
+  <rect x="0" y="30" width="850" height="12" fill="url(#barGrad)"/>
+  <circle cx="28" cy="21" r="6" fill="#ff5f56"/>
+  <circle cx="48" cy="21" r="6" fill="#ffbd2e"/>
+  <circle cx="68" cy="21" r="6" fill="#27c93f"/>
+  <text x="425" y="26" fill="#8892b0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace" font-size="13" font-weight="600" text-anchor="middle">📲 Termux Matrix Operating Hub • zsh (u0_a46@android)</text>
+
+  <!-- Terminal Buffer Body -->
+  <g font-family="'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" font-size="13">
+    <!-- Boot Telemetry Radar (Centered HUD) -->
+    <rect x="215" y="68" width="420" height="240" rx="10" fill="#0d111a" stroke="#00f0ff" stroke-opacity="0.3" stroke-width="1.5"/>
+    
+    <text x="425" y="98" fill="#00f0ff" font-weight="700" text-anchor="middle" font-size="14">📱 THIS DEVICE (Blaze 5G)</text>
+    <text x="250" y="125" fill="#a0aec0">• IP:       <tspan fill="#f6e05e" font-weight="700">10.39.68.226</tspan></text>
+    <text x="250" y="147" fill="#a0aec0">• SSH:      <tspan fill="#48bb78" font-weight="700">Port 8022 (Ready)</tspan></text>
+    <text x="250" y="169" fill="#a0aec0">• Peer:     <tspan fill="#48bb78" font-weight="700">Motobook (Active)</tspan></text>
+    
+    <line x1="240" y1="185" x2="610" y2="185" stroke="#222838" stroke-width="1"/>
+    
+    <text x="425" y="212" fill="#d53f8c" font-weight="700" text-anchor="middle" font-size="14">💻 REMOTE WORKSTATION (Motobook)</text>
+    <text x="250" y="238" fill="#a0aec0">• Status:   <tspan fill="#48bb78" font-weight="700">🟢 Online (10.242.186.142)</tspan></text>
+    <text x="250" y="260" fill="#a0aec0">• Action:   <tspan fill="#63b3ed" font-weight="700">Type 'peer' to connect (Port 22)</tspan></text>
+    <text x="250" y="282" fill="#a0aec0">• Security: <tspan fill="#9f7aea">Ed25519 Key Verified</tspan></text>
+
+    <!-- Starship Prompt Line 1 -->
+    <rect x="40" y="335" width="135" height="26" rx="4" fill="#9A348E"/>
+    <text x="48" y="352" fill="#ffffff" font-weight="700">󰈙 ~/workspace</text>
+    <polygon points="175,335 188,348 175,361" fill="#9A348E"/>
+
+    <rect x="188" y="335" width="115" height="26" rx="4" fill="#FCA17D"/>
+    <text x="198" y="352" fill="#2d3748" font-weight="700"> main [clean]</text>
+    <polygon points="303,335 316,348 303,361" fill="#FCA17D"/>
+
+    <rect x="316" y="335" width="85" height="26" rx="4" fill="#06969A"/>
+    <text x="326" y="352" fill="#ffffff" font-weight="700">♥ 04:30</text>
+    <polygon points="401,335 414,348 401,361" fill="#06969A"/>
+
+    <!-- Terminal Command & Output -->
+    <text x="40" y="395" fill="#00f0ff" font-weight="700">➜</text>
+    <text x="60" y="395" fill="#f7fafc" font-weight="500">title -Name dev &amp;&amp; fast-fetch --minimal</text>
+
+    <text x="40" y="425" fill="#48bb78">🏷️ Tab title set to: 🛠️ Dev (Sticky for this session)</text>
+    
+    <text x="40" y="455" fill="#63b3ed">OS:         <tspan fill="#e2e8f0">Android 14 (Linux 5.10.198 aarch64)</tspan></text>
+    <text x="40" y="475" fill="#63b3ed">Host:       <tspan fill="#e2e8f0">Lava Blaze 5G (8GB RAM / 128GB UFS)</tspan></text>
+    <text x="40" y="495" fill="#63b3ed">Uptime:     <tspan fill="#e2e8f0">2 days, 10 hours, 28 mins</tspan></text>
+    <text x="40" y="515" fill="#63b3ed">Battery:    <tspan fill="#48bb78">73% (Discharging, 40.6°C)</tspan></text>
+    <text x="40" y="535" fill="#63b3ed">Shell:      <tspan fill="#e2e8f0">Zsh 5.9 (Fast-Syntax-Highlighting, FZF-Tab)</tspan></text>
+    <text x="40" y="555" fill="#63b3ed">Terminal:   <tspan fill="#e2e8f0">Termux 0.118 (AMOLED True-Black UI)</tspan></text>
+
+    <text x="40" y="590" fill="#00f0ff" font-weight="700">➜</text>
+    <text x="60" y="590" fill="#f7fafc" font-weight="500">chship tokyo-night</text>
+    <rect x="235" y="577" width="9" height="17" fill="#00f0ff" opacity="0.8"/>
+  </g>
+
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <!-- 2×7 EXTRA KEYS HARDWARE ROW (Native Touch Surface)           -->
+  <!-- ═════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="625" width="850" height="155" fill="#0d0e14" stroke="#222838" stroke-width="1.5"/>
+
+  <!-- Row 1: 7 Keys -->
+  <!-- Col 1: TAB / ESC -->
+  <g transform="translate(18, 638)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">🔁</text>
+    <rect x="68" y="6" width="34" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="85" y="18" fill="#00f0ff" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">ESC</text>
+  </g>
+
+  <!-- Col 2: / / PIPE -->
+  <g transform="translate(134, 638)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">🚀</text>
+    <rect x="74" y="6" width="28" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="88" y="18" fill="#00f0ff" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">|</text>
+  </g>
+
+  <!-- Col 3: QUOTE / * -->
+  <g transform="translate(250, 638)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">⏸️</text>
+    <rect x="74" y="6" width="28" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="88" y="18" fill="#00f0ff" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">*</text>
+  </g>
+
+  <!-- Col 4: - / _ -->
+  <g transform="translate(366, 638)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">➖</text>
+    <rect x="74" y="6" width="28" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="88" y="18" fill="#00f0ff" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">_</text>
+  </g>
+
+  <!-- Col 5: = / : -->
+  <g transform="translate(482, 638)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">🟰</text>
+    <rect x="74" y="6" width="28" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="88" y="18" fill="#00f0ff" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">:</text>
+  </g>
+
+  <!-- Col 6: UP / PGUP -->
+  <g transform="translate(598, 638)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">🔼</text>
+    <rect x="66" y="6" width="36" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="84" y="18" fill="#00f0ff" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">PGUP</text>
+  </g>
+
+  <!-- Col 7: KEYBOARD / PASTE -->
+  <g transform="translate(714, 638)">
+    <rect width="108" height="60" rx="8" fill="url(#keyActive)" stroke="#00f0ff" stroke-width="1.5"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">⌨️</text>
+    <rect x="62" y="6" width="40" height="16" rx="3" fill="#48bb78" fill-opacity="0.3"/>
+    <text x="82" y="18" fill="#48bb78" font-family="monospace" font-size="8" font-weight="700" text-anchor="middle">PASTE</text>
+  </g>
+
+  <!-- Row 2: 7 Keys -->
+  <!-- Col 1: CTRL / $ -->
+  <g transform="translate(18, 706)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#a0aec0" font-family="monospace" font-size="14" font-weight="700" text-anchor="middle">CTRL</text>
+    <rect x="74" y="6" width="28" height="16" rx="3" fill="#f6e05e" fill-opacity="0.2"/>
+    <text x="88" y="18" fill="#f6e05e" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">$</text>
+  </g>
+
+  <!-- Col 2: DRAWER / $HOME/ -->
+  <g transform="translate(134, 706)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">🗂️</text>
+    <rect x="62" y="6" width="40" height="16" rx="3" fill="#f6e05e" fill-opacity="0.2"/>
+    <text x="82" y="18" fill="#f6e05e" font-family="monospace" font-size="8" font-weight="700" text-anchor="middle">~HOME</text>
+  </g>
+
+  <!-- Col 3: ALT / $PREFIX/ -->
+  <g transform="translate(250, 706)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#a0aec0" font-family="monospace" font-size="14" font-weight="700" text-anchor="middle">ALT</text>
+    <rect x="62" y="6" width="40" height="16" rx="3" fill="#f6e05e" fill-opacity="0.2"/>
+    <text x="82" y="18" fill="#f6e05e" font-family="monospace" font-size="8" font-weight="700" text-anchor="middle">PREFIX</text>
+  </g>
+
+  <!-- Col 4: && / || -->
+  <g transform="translate(366, 706)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">🏠</text>
+    <rect x="74" y="6" width="28" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="88" y="18" fill="#00f0ff" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">||</text>
+  </g>
+
+  <!-- Col 5: LEFT / HOME -->
+  <g transform="translate(482, 706)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">◀️</text>
+    <rect x="66" y="6" width="36" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="84" y="18" fill="#00f0ff" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">HOME</text>
+  </g>
+
+  <!-- Col 6: DOWN / PGDN -->
+  <g transform="translate(598, 706)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">🔽</text>
+    <rect x="66" y="6" width="36" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="84" y="18" fill="#00f0ff" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">PGDN</text>
+  </g>
+
+  <!-- Col 7: RIGHT / END -->
+  <g transform="translate(714, 706)">
+    <rect width="108" height="60" rx="8" fill="url(#keyGrad)" stroke="#2d3748" stroke-width="1"/>
+    <text x="54" y="38" fill="#e2e8f0" font-family="monospace" font-size="18" text-anchor="middle">▶️</text>
+    <rect x="70" y="6" width="32" height="16" rx="3" fill="#00f0ff" fill-opacity="0.2"/>
+    <text x="86" y="18" fill="#00f0ff" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">END</text>
+  </g>
+</svg>

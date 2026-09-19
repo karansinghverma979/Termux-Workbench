@@ -1,0 +1,32 @@
+# Private Environment & Sensitive Keys
+*.env
+!.env.example
+!peer_pc.env.example
+*.key
+*.pem
+id_rsa*
+id_ed25519*
+
+# Shell runtime state & caches
+.zcompdump*
+.zsh_history
+.bash_history
+.cache/
+.p10k_disliked.txt
+.p10k_current_theme.txt
+starship_disliked.txt
+starship_current_theme.txt
+.prompt_engine
+.ssh_last_client
+
+# Local Backups
+*.bak
+*.backup
+*.tmp
+*.tar.gz
+backups/
+
+# OS Artifacts
+Thumbs.db
+[Dd]esktop.ini
+.DS_Store

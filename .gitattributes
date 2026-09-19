@@ -1,0 +1,23 @@
+# Auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# Shell scripts and dotfiles must always use LF
+*.sh text eol=lf
+*.zsh text eol=lf
+*.bash text eol=lf
+.zshrc text eol=lf
+.tmux.conf text eol=lf
+termux.properties text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ttf binary
