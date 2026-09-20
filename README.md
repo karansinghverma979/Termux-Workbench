@@ -121,7 +121,7 @@ Keep complex multitasking sessions organized across multiple Termux tabs:
 
 ---
 
-### 4. 💻 Federated Peer Workstation Bridge
+### 4. 💻 Federated Peer Workstation Bridge & Blaze-SSH Link
 
 Seamlessly pair your mobile terminal with your PC or laptop workstation:
 
@@ -131,6 +131,10 @@ peer                     # Automatically discovers and SSHs into your PC
 
 * **Dynamic Network Auto-Discovery**: Probes your mobile hotspot gateway, local Wi-Fi subnet, and cached clients in <200ms without hardcoded IP dependencies.
 * **Zero-Password Ed25519 Trust**: Automatically asserts your desktop's public SSH key in `~/.ssh/authorized_keys` for friction-free remote terminal synchronization.
+* **Blaze-SSH Companion Bridge ([karansinghverma979/Blaze-SSH](https://github.com/karansinghverma979/Blaze-SSH))**:
+  * **Bi-Directional Command Nexus**: While `Termux-Workbench` powers the sovereign mobile Linux environment on your phone (e.g. Lava Blaze 5G), the **Blaze-SSH Bridge** connects from Windows 11 (Motobook) into Termux over port 8022.
+  * **Wire-Speed Automation (<4ms Latency)**: Powers desktop automation commands (`blaze`, `blaze-status`, `blaze-clip`, `blaze-location`, `blaze-phone`, `blaze-notifs`, `blaze-wifi`, `blaze-file`) with bi-directional clipboard sync, SMS relays, and sensor streaming.
+  * **1-Key Remote Handshake**: Run `peer` on Termux to jump into Windows, or run `blaze` on Windows to jump straight into Termux.
 * **Connection Drop Recovery**: Automatically traps connection drops when switching networks and guides you back online.
 * **Centered Boot Telemetry Radar**: Prints a clean, horizontally centered HUD on terminal launch displaying local device IP, SSH port status, and workstation reachability.
 
