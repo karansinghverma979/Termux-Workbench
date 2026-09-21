@@ -80,6 +80,5 @@ SSHEOF
         echo -e "\033[0;36m💡 Type 'peer' to reconnect once PC is back online.\033[0m\n"
     fi
 }
-alias peer="Connect-Peer"
-# Backward-compatibility alias for Karan's personal workflow
+# Primary connection alias — the only command you need
 alias motobook="Connect-Peer"

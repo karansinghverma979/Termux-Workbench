@@ -68,8 +68,9 @@
 * Handled natively by Termux's Java layer reading `~/.termux/termux.properties`.
 * All swipe-up events execute as atomic token emissions or macros without interfering with OS navigation gestures.
 
-### 5. Blaze-SSH Federation & Bi-Directional Command Bus
-* **Companion Gateway**: Deeply integrated with [karansinghverma979/Blaze-SSH](https://github.com/karansinghverma979/Blaze-SSH) for dual-node edge computing between Android (Lava Blaze 5G) and Windows 11 (Motobook).
+### 5. Blaze-Termux-SSH Federation & Bi-Directional Command Bus
+* **Companion Gateway**: Deeply integrated with [karansinghverma979/Blaze-Termux-SSH](https://github.com/karansinghverma979/Blaze-Termux-SSH) for dual-node edge computing between Android (Lava Blaze 5G) and Windows 11 (Motobook).
 * **Wire-Speed Protocol**: Communicates over OpenSSH port 8022 with Ed25519 authentication, achieving sub-4ms round-trip latency on local subnets.
 * **Remote Dispatch**: Exposes 10 specialized automation channels from Windows (`blaze`, `blaze-status`, `blaze-clip`, `blaze-location`, `blaze-phone`, `blaze-notifs`, `blaze-wifi`, `blaze-file`, `blaze-media`, `blaze-speak`) into Termux while allowing 1-key return hopping via `peer` on Android.
+* **Full Specification**: See [docs/BLAZE_TERMUX_SSH.md](./BLAZE_TERMUX_SSH.md) for the complete integration architecture.
 

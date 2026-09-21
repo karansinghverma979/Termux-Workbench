@@ -51,6 +51,7 @@ pkg install -y \
     jq \
     zoxide \
     bat \
+    nano \
     openssh \
     netcat-openbsd \
     curl \
@@ -103,8 +104,28 @@ cp -f "${SCRIPT_DIR}/config/termux.properties" "${HOME_DIR}/.termux/termux.prope
 cp -f "${SCRIPT_DIR}/config/.zshrc" "${HOME_DIR}/.zshrc"
 cp -f "${SCRIPT_DIR}/config/.tmux.conf" "${HOME_DIR}/.tmux.conf"
 cp -f "${SCRIPT_DIR}/config/starship.toml" "${HOME_DIR}/.config/starship.toml"
+[ -f "${SCRIPT_DIR}/config/.nanorc" ] && cp -f "${SCRIPT_DIR}/config/.nanorc" "${HOME_DIR}/.nanorc"
+mkdir -p "${HOME_DIR}/.nano_backups"
 [ ! -f "${HOME_DIR}/.config/terminal_titles.json" ] && cp -f "${SCRIPT_DIR}/config/terminal_titles.json" "${HOME_DIR}/.config/terminal_titles.json"
 [ ! -f "${HOME_DIR}/.peer_pc.env" ] && cp -f "${SCRIPT_DIR}/config/peer_pc.env.example" "${HOME_DIR}/.peer_pc.env"
+
+# MOTD Suppression & Clean Startup
+echo -e "${CYAN}🧹 Suppressing default MOTD splash banners...${NC}"
+[ -f "/data/data/com.termux/files/usr/etc/motd" ] && mv -f "/data/data/com.termux/files/usr/etc/motd" "/data/data/com.termux/files/usr/etc/motd.bak" 2>/dev/null || true
+[ -f "/data/data/com.termux/files/usr/etc/motd-playstore" ] && mv -f "/data/data/com.termux/files/usr/etc/motd-playstore" "/data/data/com.termux/files/usr/etc/motd-playstore.bak" 2>/dev/null || true
+[ -f "/data/data/com.termux/files/usr/etc/motd.sh" ] && mv -f "/data/data/com.termux/files/usr/etc/motd.sh" "/data/data/com.termux/files/usr/etc/motd.sh.bak" 2>/dev/null || true
+touch "${HOME_DIR}/.hushlogin"
+
+# Nerd Font Engine Setup (JetBrains Mono Bold Standard)
+mkdir -p "${HOME_DIR}/.termux/fonts"
+if [ ! -f "${HOME_DIR}/.termux/font.ttf" ] && [ ! -f "${HOME_DIR}/.termux/fonts/JetBrainsMono-NF-Bold.ttf" ]; then
+    echo -e "${CYAN}🔤 Fetching default JetBrains Mono Bold Nerd Font for mobile glyphs...${NC}"
+    curl -fsSL "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Bold/JetBrainsMonoNerdFont-Bold.ttf" -o "${HOME_DIR}/.termux/fonts/JetBrainsMono-NF-Bold.ttf" 2>/dev/null || true
+    if [ -f "${HOME_DIR}/.termux/fonts/JetBrainsMono-NF-Bold.ttf" ]; then
+        cp -f "${HOME_DIR}/.termux/fonts/JetBrainsMono-NF-Bold.ttf" "${HOME_DIR}/.termux/font.ttf"
+        echo "JetBrainsMono-NF-Bold" > "${HOME_DIR}/.termux_current_font.txt"
+    fi
+fi
 
 echo -e "${CYAN}🐚 [5/6] Setting default shell to Zsh...${NC}"
 if [ "$SHELL" != "$(which zsh)" ]; then

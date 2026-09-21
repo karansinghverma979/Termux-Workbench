@@ -1,0 +1,46 @@
+# ==============================================================================
+# 📝 Termux-Workbench: Hardened Ergonomic Nano Configuration (.nanorc)
+# Author: Karan Singh Verma & Antigravity Assistant
+# ==============================================================================
+
+# UI & Display
+set linenumbers
+set constantshow
+set softwrap
+set stateflags
+set smarthome
+set mouse
+
+# Tabs & Indentation
+set tabsize 4
+set tabstospaces
+set autoindent
+set atblanks
+set trimblanks
+
+# Editing & Cursor Navigation
+set zap
+set afterends
+set nonewlines
+set casesensitive
+set regexp
+
+# Persistence & Backups
+set backupdir "~/.nano_backups"
+set backup
+set historylog
+set positionlog
+
+# Syntax Highlighting (Termux Prefix Dynamic Resolution)
+include "/data/data/com.termux/files/usr/share/nano/*.nanorc"
+include "/data/data/com.termux/files/usr/share/nano/extra/*.nanorc"
+
+# Mobile AMOLED & Terminal Color Scheme
+set titlecolor bold,white,blue
+set statuscolor bold,white,blue
+set numbercolor yellow,black
+set keycolor cyan,black
+set functioncolor white,black
+set selectedcolor white,magenta
+set promptcolor bold,white,magenta
+set stripecolor ,yellow

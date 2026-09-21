@@ -174,6 +174,42 @@ alias rmship="Remove-StarshipTheme"
 alias use-starship="Use-StarshipPrompt"
 alias use-p10k="Use-P10kPrompt"
 
+# --- Termux Font Suite ---
+Change-TermuxFont() {
+    local chosen="$1"
+    local fonts_dir="$HOME/.termux/fonts"
+    if [[ ! -d "$fonts_dir" ]]; then
+        echo -e "\033[31m❌ Fonts directory $fonts_dir not found.\033[0m"
+        return 1
+    fi
+    local available=($(ls "$fonts_dir" 2>/dev/null | grep -E '\.(ttf|otf)$' | sed 's/\.[^.]*$//'))
+    if [[ -z "$chosen" || "$chosen" == "-i" ]] && command -v fzf >/dev/null 2>&1; then
+        chosen=$(printf '%s\n' "${available[@]}" | fzf --prompt="Select Termux Nerd Font > " --height=40% --reverse)
+    fi
+    if [[ -n "$chosen" ]]; then
+        local font_file=""
+        if [[ -f "$fonts_dir/${chosen}.ttf" ]]; then
+            font_file="$fonts_dir/${chosen}.ttf"
+        elif [[ -f "$fonts_dir/${chosen}.otf" ]]; then
+            font_file="$fonts_dir/${chosen}.otf"
+        elif [[ -f "$fonts_dir/${chosen}" ]]; then
+            font_file="$fonts_dir/${chosen}"
+        fi
+
+        if [[ -n "$font_file" && -f "$font_file" ]]; then
+            cp -f "$font_file" "$HOME/.termux/font.ttf"
+            echo "$chosen" > "$HOME/.termux_current_font.txt"
+            if command -v termux-reload-settings >/dev/null 2>&1; then
+                termux-reload-settings
+            fi
+            echo -e "\033[32m✨ Termux font switched to: $chosen (Reloaded)\033[0m"
+        else
+            echo -e "\033[33m⚠️ Unknown font '$chosen'. Available: ${available[*]}\033[0m"
+        fi
+    fi
+}
+alias chfont="Change-TermuxFont"
+
 # Engine Boot Loader
 if [[ "$ACTIVE_ENGINE" == "p10k" ]]; then
     if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then

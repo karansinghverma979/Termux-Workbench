@@ -132,11 +132,12 @@ peer                     # Automatically discovers and SSHs into your PC
 * **Dynamic Network Auto-Discovery**: Probes your mobile hotspot gateway, local Wi-Fi subnet, and cached clients in <200ms without hardcoded IP dependencies.
 * **Zero-Password Ed25519 Trust**: Automatically asserts your desktop's public SSH key in `~/.ssh/authorized_keys` for friction-free remote terminal synchronization.
 * **Blaze-SSH Companion Bridge ([karansinghverma979/Blaze-SSH](https://github.com/karansinghverma979/Blaze-SSH))**:
-  * **Bi-Directional Command Nexus**: While `Termux-Workbench` powers the sovereign mobile Linux environment on your phone (e.g. Lava Blaze 5G), the **Blaze-SSH Bridge** connects from Windows 11 (Motobook) into Termux over port 8022.
-  * **Wire-Speed Automation (<4ms Latency)**: Powers desktop automation commands (`blaze`, `blaze-status`, `blaze-clip`, `blaze-location`, `blaze-phone`, `blaze-notifs`, `blaze-wifi`, `blaze-file`) with bi-directional clipboard sync, SMS relays, and sensor streaming.
+  * **Bi-Directional Command Nexus**: While `Termux-Workbench` powers the sovereign mobile Linux environment on your phone (e.g. Lava Blaze 5G), the companion **[Blaze-Termux-SSH](https://github.com/karansinghverma979/Blaze-Termux-SSH)** framework connects from Windows 11 (Motobook) into Termux over port 8022.
+  * **Wire-Speed Automation (<4ms Latency)**: Powers desktop automation commands (`blaze`, `blaze-status`, `blaze-clip`, `blaze-location`, `blaze-phone`, `blaze-notifs`, `blaze-wifi`, `blaze-file`, `blaze-media`, `blaze-speak`) with bi-directional clipboard sync, SMS relays, and sensor streaming.
   * **1-Key Remote Handshake**: Run `peer` on Termux to jump into Windows, or run `blaze` on Windows to jump straight into Termux.
 * **Connection Drop Recovery**: Automatically traps connection drops when switching networks and guides you back online.
 * **Centered Boot Telemetry Radar**: Prints a clean, horizontally centered HUD on terminal launch displaying local device IP, SSH port status, and workstation reachability.
+* 📖 *Read the complete companion guide in [docs/BLAZE_TERMUX_SSH.md](docs/BLAZE_TERMUX_SSH.md).*
 
 ---
 
@@ -149,7 +150,7 @@ peer                     # Automatically discovers and SSHs into your PC
 ├── 00-core.zsh          # Shell history, completions, and environment exports
 ├── 10-telemetry.zsh     # Centered boot telemetry radar and SSH supervision
 ├── 20-titles.zsh        # Sticky workspace tab titles and process-aware tracking
-├── 30-prompts.zsh       # Starship & Powerlevel10k theme switchboard
+├── 30-prompts.zsh       # Starship & Powerlevel10k theme switchboard & font switcher
 ├── 40-tmux.zsh          # Session control suite and auto-attach
 ├── 50-peer-bridge.zsh   # Dynamic workstation auto-discovery and Ed25519 pairing
 └── 60-aliases.zsh       # Personal shorthand and productivity aliases
@@ -158,9 +159,10 @@ peer                     # Automatically discovers and SSHs into your PC
 #### The `workbench` Command Center
 | Command | Description |
 | :--- | :--- |
-| `workbench status` | Display active profile, prompt engine, theme, and peer workstation telemetry. |
+| `workbench status` | Display active profile, prompt engine, active Nerd Font, and peer workstation telemetry. |
 | `workbench profile [name]` | Interactive FZF selector or direct switch between `dev`, `vim`, and `sysadmin`. |
-| `workbench theme` | Interactive prompt theme switcher. |
+| `workbench theme` | Interactive prompt theme switcher (`chship` / `chp10k`). |
+| `workbench font [name]` | Interactive FZF selector or direct switch across installed Nerd Fonts (`chfont`). |
 | `workbench update` | Pull latest updates from GitHub and reload settings. |
 | `workbench backup` | Create a timestamped configuration archive in `~/backups/`. |
 | `workbench restore <file>` | Rollback configuration from a backup archive. |
@@ -175,10 +177,13 @@ Termux-Workbench is completely decoupled from machine-specific paths and user cr
 | :--- | :--- | :--- |
 | [`~/.peer_pc.env`](config/peer_pc.env.example) | Workstation Credentials | Set your PC's IP, username, port, and public key. |
 | [`~/.termux/termux.properties`](config/termux.properties) | Touch Extra Keys & UI | Change button icons, swipe-up macros, cursor blink, and colors. |
+| [`~/.termux/fonts/`](config/) | Nerd Font Vault | Swappable monospace Nerd Fonts (`MesloLGS`, `JetBrainsMono`, `CaskaydiaCove`). |
+| [`~/.nanorc`](config/.nanorc) | Hardened Nano Config | Line numbers, AMOLED styling, smooth scrolling, and tab-to-spaces. |
 | [`~/.config/terminal_titles.json`](config/terminal_titles.json) | Tab Title Registry | Add or edit custom workspace tags (`title -Name <k> -Value <v>`). |
 | [`~/.tmux.conf`](config/.tmux.conf) | Mobile Tmux Runtime | Touch mouse support, zero escape delay, vim navigation splits. |
 
 👉 **Read the comprehensive guides**:
+- [docs/BLAZE_TERMUX_SSH.md](docs/BLAZE_TERMUX_SSH.md) — Companion Hub: Blaze-Termux-SSH Integration & Channels
 - [docs/CUSTOMIZATION.md](docs/CUSTOMIZATION.md) — Personalization & Workstation Setup
 - [docs/PROFILES.md](docs/PROFILES.md) — Profile Engine & Adding New Workflows
 - [docs/TOUCH_KEY_MATRIX.md](docs/TOUCH_KEY_MATRIX.md) — 2×7 Keymap Technical Spec

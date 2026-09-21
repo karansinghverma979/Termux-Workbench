@@ -33,6 +33,8 @@ Usage:
    workbench profile            # Interactive FZF profile switcher (dev, vim, sysadmin)
    workbench profile <name>     # Switch active profile directly
    workbench theme              # Interactive prompt theme switcher
+   workbench font               # Interactive FZF font switcher (Nerd Fonts)
+   workbench font <name>        # Switch active terminal font directly
    workbench update             # Pull latest updates from GitHub and reload
    workbench backup             # Create a timestamped configuration backup
    workbench restore [file]     # Rollback from a backup archive
@@ -49,10 +51,12 @@ cmd_status() {
     else
         cur_theme=$(cat "${HOME}/.p10k_current_theme.txt" 2>/dev/null || echo "default")
     fi
+    local cur_font=$(cat "${HOME}/.termux_current_font.txt" 2>/dev/null || echo "Default / MesloLGS-NF")
 
     echo -e "${CYAN}${BOLD}⚡ Termux-Workbench Runtime Status${NC}"
     echo -e "  • ${BOLD}Active Profile:${NC} ${GREEN}${cur_profile}${NC}"
     echo -e "  • ${BOLD}Prompt Engine:${NC}  ${MAGENTA}${cur_engine}${NC} (${cur_theme})"
+    echo -e "  • ${BOLD}Nerd Font:${NC}      ${CYAN}${cur_font}${NC}"
     echo -e "  • ${BOLD}Workbench Path:${NC} ${WORKBENCH_ROOT}"
     if [ -f "${HOME}/.peer_pc.env" ]; then
         echo -e "  • ${BOLD}Peer Config:${NC}    ${YELLOW}~/.peer_pc.env (Active)${NC}"
@@ -92,6 +96,48 @@ cmd_profile() {
     fi
 }
 
+cmd_font() {
+    local target="$1"
+    local fonts_dir="${HOME}/.termux/fonts"
+    if [ ! -d "$fonts_dir" ]; then
+        echo -e "${RED}❌ Fonts directory ${fonts_dir} not found.${NC}"
+        return 1
+    fi
+    local available=($(ls "$fonts_dir" 2>/dev/null | grep -E '\.(ttf|otf)$' | sed 's/\.[^.]*$//'))
+    if [ -z "$target" ]; then
+        if command -v fzf >/dev/null 2>&1; then
+            target=$(printf '%s\n' "${available[@]}" | fzf --prompt="Select Termux Nerd Font > " --height=40% --reverse)
+        else
+            echo -e "${YELLOW}Available Nerd Fonts:${NC} ${available[*]}"
+            echo -e "Usage: workbench font <name>"
+            return 0
+        fi
+    fi
+
+    if [ -n "$target" ]; then
+        local font_file=""
+        if [ -f "${fonts_dir}/${target}.ttf" ]; then
+            font_file="${fonts_dir}/${target}.ttf"
+        elif [ -f "${fonts_dir}/${target}.otf" ]; then
+            font_file="${fonts_dir}/${target}.otf"
+        elif [ -f "${fonts_dir}/${target}" ]; then
+            font_file="${fonts_dir}/${target}"
+        fi
+
+        if [ -n "$font_file" ] && [ -f "$font_file" ]; then
+            cp -f "$font_file" "${HOME}/.termux/font.ttf"
+            echo "$target" > "${HOME}/.termux_current_font.txt"
+            if command -v termux-reload-settings >/dev/null 2>&1; then
+                termux-reload-settings
+            fi
+            echo -e "${GREEN}✨ Termux font switched to:${NC} ${BOLD}${target}${NC} (Settings reloaded)"
+        else
+            echo -e "${RED}❌ Error: Font '${target}' not found in ${fonts_dir}.${NC}"
+            return 1
+        fi
+    fi
+}
+
 cmd_update() {
     echo -e "${CYAN}🔄 Checking for updates in ${WORKBENCH_ROOT}...${NC}"
     if [ -d "${WORKBENCH_ROOT}/.git" ]; then
@@ -117,6 +163,9 @@ case "$1" in
         else
             echo -e "${YELLOW}Run within an interactive Zsh session to switch themes.${NC}"
         fi
+        ;;
+    font)
+        cmd_font "$2"
         ;;
     update)
         cmd_update
