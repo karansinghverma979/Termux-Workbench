@@ -198,10 +198,6 @@ if [ -f "${HOME_DIR}/.termux/fonts/JetBrainsMonoNF-Bold.ttf" ]; then
     cp -f "${HOME_DIR}/.termux/fonts/JetBrainsMonoNF-Bold.ttf" "${HOME_DIR}/.termux/font.ttf"
     echo "JetBrainsMonoNF-Bold" > "${HOME_DIR}/.termux_current_font.txt"
     echo -e "${GREEN}   De-facto Windows Terminal font deployed: JetBrainsMono NF Bold.${NC}"
-elif [ -f "${HOME_DIR}/.termux/fonts/JetBrainsMonoNF-SemiBold.ttf" ]; then
-    cp -f "${HOME_DIR}/.termux/fonts/JetBrainsMonoNF-SemiBold.ttf" "${HOME_DIR}/.termux/font.ttf"
-    echo "JetBrainsMonoNF-SemiBold" > "${HOME_DIR}/.termux_current_font.txt"
-    echo -e "${GREEN}   De-facto Windows Terminal font deployed: JetBrainsMono NF SemiBold.${NC}"
 elif [ ! -f "${HOME_DIR}/.termux/font.ttf" ]; then
     # Fallback to GitHub Release asset download
     echo -e "${CYAN}   Downloading JetBrains Mono Nerd Font standard...${NC}"

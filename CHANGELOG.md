@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - **JetBrains Mono Bold Font Parity**:
   - Standardized default terminal font to **JetBrainsMono NF Bold** across both Windows Terminal and Android Termux (`JetBrainsMonoNF-Bold.ttf`).
   - Bundled font assets in `config/fonts/` for offline and immediate deployment without network 404 risk.
+  - Purged legacy SemiBold asset to strictly standardize on Bold typography across both ecosystems.
   - Automatic `no-nerd-font` preset fallback if font is reset or running headless.
 - **New CLI Subcommands**:
   - `workbench ssh`: Live SSH daemon status, IP discovery, active sessions, and pairing diagnostics.

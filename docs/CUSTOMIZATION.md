@@ -160,12 +160,11 @@ The tmux configuration is optimized for touchscreens and lives in `~/.tmux.conf`
 ## 6. Managing Fonts, Nerd Font Parity & Zero-Glyph Fallbacks
 
 ### Windows Terminal 1:1 Typography Standard
-Termux-Workbench bundles and defaults to **`JetBrainsMono NF SemiBold`** (`JetBrainsMonoNF-SemiBold.ttf`), establishing an exact 1:1 visual match with Windows Terminal on Motobook (`"face": "JetBrainsMono NF", "weight": "semi-bold"`).
+Termux-Workbench bundles and defaults to **`JetBrainsMono NF Bold`** (`JetBrainsMonoNF-Bold.ttf`), establishing an exact 1:1 visual match with Windows Terminal on Motobook (`"face": "JetBrainsMono NF", "weight": "bold"`).
 
 ### Switching Fonts Interactively
 ```bash
 workbench font                     # Interactive FZF font selector
-workbench font JetBrainsMonoNF-Bold # Switch to Bold variant
 chfont                             # Semantic alias
 ```
 

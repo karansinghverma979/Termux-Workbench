@@ -172,7 +172,7 @@ Termux-Workbench is completely decoupled from machine-specific paths and user cr
 | :--- | :--- | :--- |
 | [`~/.peer_pc.env`](config/peer_pc.env.example) | Workstation Credentials | Set your PC's IP, username, port, and public key. |
 | [`~/.termux/termux.properties`](config/termux.properties) | Touch Extra Keys & UI | Change button icons, swipe-up macros, cursor blink, and colors. |
-| [`~/.termux/fonts/`](config/fonts/) | Nerd Font Vault | Bundled `JetBrainsMono NF Bold` (Windows Terminal 1:1 match) & `SemiBold`. |
+| [`~/.termux/fonts/`](config/fonts/) | Nerd Font Vault | Bundled `JetBrainsMono NF Bold` (Windows Terminal 1:1 match). |
 | [`~/.nanorc`](config/.nanorc) | Hardened Nano Config | Line numbers, AMOLED styling, smooth scrolling, and tab-to-spaces. |
 | [`~/.config/terminal_titles.json`](config/terminal_titles.json) | Tab Title Registry | Add or edit custom workspace tags (`title -Name <k> -Value <v>`). |
 | [`~/.tmux.conf`](config/.tmux.conf) | Mobile Tmux Runtime | Touch mouse support, zero escape delay, vim navigation splits. |
