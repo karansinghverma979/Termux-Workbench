@@ -1,0 +1,3 @@
+# Authorized Workstation Keys for Termux Peer Bridge
+# Motobook (Karan Singh Verma)
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCNjdCpyt8IFlrtDnJNjZq6bWAMg6PUtfX/GYEaL3zF karan@Motobook

@@ -34,8 +34,8 @@
 │  └───────────────────────┘ └──────────────────────┘ └──────────────┘   │
 │                                                                        │
 │  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │                Dual Prompt Engine Switchboard                    │  │
-│  │         Starship (12 Presets)  ◄──►  Powerlevel10k               │  │
+│  │               Sovereign Starship Prompt Switchboard              │  │
+│  │         Curated Presets (12 Mobile Themes) • FZF Selection       │  │
 │  └──────────────────────────────────────────────────────────────────┘  │
 └────────────────────────────────────┬───────────────────────────────────┘
                                      │
@@ -60,9 +60,9 @@
 * **Sticky Mode Immunity**: When a user sets a manual title via `title <name>`, the title is frozen and ignores process execution events until explicitly reset.
 * **Failure Sentinel**: Displays a red cross `❌` prefix whenever the preceding command exits with a non-zero status code.
 
-### 3. Dual Prompt Engine
-* **State Persistence**: Active prompt preference is saved in `~/.prompt_engine` (`starship` or `p10k`).
-* **Preset Blacklisting**: Disliked themes are recorded in `~/.config/starship_disliked.txt` or `~/.p10k_disliked.txt` and dynamically excluded from the FZF theme rotation array.
+### 3. Sovereign Starship Prompt Suite
+* **Native Rust Performance**: Statically linked against Android Bionic libc, achieving <10ms prompt render latency without background daemons.
+* **Preset Blacklisting**: Disliked themes are recorded in `~/.config/starship_disliked.txt` and dynamically excluded from the FZF theme rotation array.
 
 ### 4. Touch Matrix Driver
 * Handled natively by Termux's Java layer reading `~/.termux/termux.properties`.

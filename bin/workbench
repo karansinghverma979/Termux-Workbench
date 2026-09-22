@@ -35,6 +35,8 @@ Usage:
    workbench theme              # Interactive prompt theme switcher
    workbench font               # Interactive FZF font switcher (Nerd Fonts)
    workbench font <name>        # Switch active terminal font directly
+   workbench ssh                # Show SSH daemon status, IP, port & pairing info
+   workbench pkg [install|check]# Manage & install essential packages (Python, ifconfig, iwconfig, etc.)
    workbench update             # Pull latest updates from GitHub and reload
    workbench backup             # Create a timestamped configuration backup
    workbench restore [file]     # Rollback from a backup archive
@@ -44,18 +46,12 @@ EOF
 
 cmd_status() {
     local cur_profile=$(cat "$PROFILE_STATE_FILE" 2>/dev/null || echo "dev")
-    local cur_engine=$(cat "${HOME}/.prompt_engine" 2>/dev/null || echo "starship")
-    local cur_theme=""
-    if [ "$cur_engine" = "starship" ]; then
-        cur_theme=$(cat "${HOME}/.config/starship_current_theme.txt" 2>/dev/null || echo "default")
-    else
-        cur_theme=$(cat "${HOME}/.p10k_current_theme.txt" 2>/dev/null || echo "default")
-    fi
-    local cur_font=$(cat "${HOME}/.termux_current_font.txt" 2>/dev/null || echo "Default / MesloLGS-NF")
+    local cur_theme=$(cat "${HOME}/.config/starship_current_theme.txt" 2>/dev/null || echo "default")
+    local cur_font=$(cat "${HOME}/.termux_current_font.txt" 2>/dev/null || echo "JetBrainsMonoNF-Bold")
 
     echo -e "${CYAN}${BOLD}⚡ Termux-Workbench Runtime Status${NC}"
     echo -e "  • ${BOLD}Active Profile:${NC} ${GREEN}${cur_profile}${NC}"
-    echo -e "  • ${BOLD}Prompt Engine:${NC}  ${MAGENTA}${cur_engine}${NC} (${cur_theme})"
+    echo -e "  • ${BOLD}Prompt Engine:${NC}  ${MAGENTA}Starship${NC} (${cur_theme})"
     echo -e "  • ${BOLD}Nerd Font:${NC}      ${CYAN}${cur_font}${NC}"
     echo -e "  • ${BOLD}Workbench Path:${NC} ${WORKBENCH_ROOT}"
     if [ -f "${HOME}/.peer_pc.env" ]; then
@@ -106,12 +102,27 @@ cmd_font() {
     local available=($(ls "$fonts_dir" 2>/dev/null | grep -E '\.(ttf|otf)$' | sed 's/\.[^.]*$//'))
     if [ -z "$target" ]; then
         if command -v fzf >/dev/null 2>&1; then
-            target=$(printf '%s\n' "${available[@]}" | fzf --prompt="Select Termux Nerd Font > " --height=40% --reverse)
+            target=$(printf '%s\n' "reset (stock font)" "${available[@]}" | fzf --prompt="Select Termux Font > " --height=40% --reverse)
+            [ "$target" = "reset (stock font)" ] && target="reset"
         else
-            echo -e "${YELLOW}Available Nerd Fonts:${NC} ${available[*]}"
-            echo -e "Usage: workbench font <name>"
+            echo -e "${YELLOW}Available Fonts:${NC} reset, ${available[*]}"
+            echo -e "Usage: workbench font <name|reset>"
             return 0
         fi
+    fi
+
+    if [ "$target" = "reset" ] || [ "$target" = "none" ] || [ "$target" = "stock" ]; then
+        rm -f "${HOME}/.termux/font.ttf"
+        echo "Stock System Font" > "${HOME}/.termux_current_font.txt"
+        if command -v starship >/dev/null 2>&1; then
+            starship preset no-nerd-font -o "${HOME}/.config/starship.toml" --force 2>/dev/null || true
+            echo "no-nerd-font" > "${HOME}/.config/starship_current_theme.txt"
+        fi
+        if command -v termux-reload-settings >/dev/null 2>&1; then
+            termux-reload-settings
+        fi
+        echo -e "${GREEN}✨ Reset to Stock System Font (Starship switched to 'no-nerd-font' to prevent broken icons).${NC}"
+        return 0
     fi
 
     if [ -n "$target" ]; then
@@ -150,9 +161,52 @@ cmd_update() {
     fi
 }
 
+cmd_pkg() {
+    local action="${1:-install}"
+    local pkg_script="${WORKBENCH_ROOT}/scripts/pkg-essentials.sh"
+    if [ -f "$pkg_script" ]; then
+        bash "$pkg_script" "$action"
+    else
+        echo -e "${RED}❌ Error: Essential package provisioner not found at ${pkg_script}.${NC}"
+        return 1
+    fi
+}
+
+cmd_ssh() {
+    local sshd_pid=$(pgrep -x sshd 2>/dev/null || echo "")
+    local phone_ip=$(ip route get 1.1.1.1 2>/dev/null | awk '{print $7}')
+    if [ -z "$phone_ip" ]; then
+        phone_ip=$(ifconfig 2>/dev/null | grep -oE "inet [0-9.]+" | grep -v "127.0.0.1" | awk '{print $2}' | head -n1)
+    fi
+    [[ -z "$phone_ip" ]] && phone_ip="127.0.0.1"
+    local termux_user=$(whoami)
+    local auth_count=0
+    [ -f "${HOME}/.ssh/authorized_keys" ] && auth_count=$(grep -c "^ssh-" "${HOME}/.ssh/authorized_keys" 2>/dev/null || echo 0)
+    local active_sessions=$(pgrep -f sshd-session 2>/dev/null | wc -l)
+
+    echo -e "${CYAN}${BOLD}🔒 Termux SSH & Workstation Bridge Status${NC}"
+    if [ -n "$sshd_pid" ]; then
+        echo -e "  • ${BOLD}SSHD Status:${NC}       ${GREEN}Running (PID: ${sshd_pid}, Port: 8022)${NC}"
+    else
+        echo -e "  • ${BOLD}SSHD Status:${NC}       ${RED}Stopped${NC} (Run 'sshd' to start)"
+    fi
+    echo -e "  • ${BOLD}Device IP:${NC}         ${YELLOW}${phone_ip}:8022${NC}"
+    echo -e "  • ${BOLD}Termux User:${NC}       ${CYAN}${termux_user}${NC}"
+    echo -e "  • ${BOLD}Active Sessions:${NC}   ${MAGENTA}${active_sessions}${NC}"
+    echo -e "  • ${BOLD}Authorized Keys:${NC}   ${GREEN}${auth_count} key(s) installed (~/.ssh/authorized_keys)${NC}"
+    if [ -f "${HOME}/.peer_pc.env" ]; then
+        echo -e "  • ${BOLD}Peer Workstation:${NC}  ${GREEN}Configured (~/.peer_pc.env)${NC}"
+    fi
+    echo -e "\n${CYAN}🔗 Connect from Motobook Windows Terminal:${NC}"
+    echo -e "   ${BOLD}${GREEN}ssh -p 8022 ${termux_user}@${phone_ip}${NC} (or run '${YELLOW}blaze${NC}' in PowerShell)\n"
+}
+
 case "$1" in
     status)
         cmd_status
+        ;;
+    ssh|sshd)
+        cmd_ssh
         ;;
     profile)
         cmd_profile "$2"
@@ -166,6 +220,9 @@ case "$1" in
         ;;
     font)
         cmd_font "$2"
+        ;;
+    pkg|pkg-install|packages)
+        cmd_pkg "$2"
         ;;
     update)
         cmd_update

@@ -7,7 +7,7 @@ This guide walks you through customizing every layer of **Termux-Matrix** so you
 ## 📑 Table of Contents
 1. [Customizing the 2×7 Touch Extra Keys](#1-customizing-the-27-touch-extra-keys)
 2. [Pairing Termux with Your Personal Workstation (PC Bridge)](#2-pairing-termux-with-your-personal-workstation-pc-bridge)
-3. [Managing Prompt Themes & Engines (Starship vs P10k)](#3-managing-prompt-themes--engines-starship-vs-p10k)
+3. [Managing Starship Prompt Presets](#3-managing-starship-prompt-presets)
 4. [Customizing Workspace Tab Titles](#4-customizing-workspace-tab-titles)
 5. [Tmux Configuration & Statusline Tuning](#5-tmux-configuration--statusline-tuning)
 6. [Managing Fonts & Color Schemes](#6-managing-fonts--color-schemes)
@@ -86,19 +86,9 @@ peer
 
 ---
 
-## 3. Managing Prompt Themes & Engines (Starship vs P10k)
+## 3. Managing Starship Prompt Presets
 
-Termux-Matrix features a **Dual-Engine Architecture** that lets you switch between **Starship** and **Powerlevel10k** in real-time.
-
-### Switching Prompt Engines
-* Switch to **Starship**:
-  ```bash
-  use-starship
-  ```
-* Switch to **Powerlevel10k**:
-  ```bash
-  use-p10k
-  ```
+Termux-Workbench standardizes 100% on **Starship**, providing instant rendering, zero daemon bloat, and seamless adaptation across mobile portrait and desktop screens.
 
 ### Switching Themes Interactively
 * **Starship Presets**: Run `chship` without arguments to open an interactive fuzzy picker (FZF) featuring 12 curated mobile presets:
@@ -109,20 +99,13 @@ Termux-Matrix features a **Dual-Engine Architecture** that lets you switch betwe
   chship gruvbox-rainbow
   chship catppuccin-powerline
   ```
-* **Powerlevel10k Themes**:
-  ```bash
-  chp10k
-  # Or configure interactively:
-  chp10k wizard
-  ```
 
 ### The Blacklist Feature
 If you encounter a preset you dislike, blacklist it permanently so it never appears in your rotation again:
 ```bash
 rmship    # Blacklists the active Starship theme
-rmp10k    # Blacklists the active P10k theme
 ```
-Blacklisted themes are saved in `~/.config/starship_disliked.txt` and `~/.p10k_disliked.txt`. To clear the blacklist, simply delete those files.
+Blacklisted themes are saved in `~/.config/starship_disliked.txt`. To clear the blacklist, simply delete that file.
 
 ---
 
@@ -174,7 +157,22 @@ The tmux configuration is optimized for touchscreens and lives in `~/.tmux.conf`
 
 ---
 
-## 6. Managing Fonts & Color Schemes
+## 6. Managing Fonts, Nerd Font Parity & Zero-Glyph Fallbacks
 
-* **Colors**: Place any custom Termux colors file in `~/.termux/colors.properties` and run `termux-reload-settings`.
-* **Fonts**: Place your favorite Powerline/Nerd Font TTF file in `~/.termux/font.ttf` and run `termux-reload-settings`.
+### Windows Terminal 1:1 Typography Standard
+Termux-Workbench bundles and defaults to **`JetBrainsMono NF SemiBold`** (`JetBrainsMonoNF-SemiBold.ttf`), establishing an exact 1:1 visual match with Windows Terminal on Motobook (`"face": "JetBrainsMono NF", "weight": "semi-bold"`).
+
+### Switching Fonts Interactively
+```bash
+workbench font                     # Interactive FZF font selector
+workbench font JetBrainsMonoNF-Bold # Switch to Bold variant
+chfont                             # Semantic alias
+```
+
+### The "Without Nerd Font" Fallback (Zero Broken Icons)
+If you are running on stock Termux, without custom fonts installed, or in an environment where Nerd Font glyphs fail to render:
+```bash
+workbench font reset               # Purges ~/.termux/font.ttf and auto-switches Starship to 'no-nerd-font'
+```
+* **`no-nerd-font` preset**: Replaces specialized Nerd Font private-use glyphs with universal Unicode symbols (like `▶`, `branch`, `✓`, `✗`) that render reliably on every stock Android font without broken rectangle boxes.
+* **`plain-text-symbols` preset**: Run `chship plain-text-symbols` for pure ASCII symbols (`>`, `[git:main]`), guaranteed to render on any terminal or TTY.

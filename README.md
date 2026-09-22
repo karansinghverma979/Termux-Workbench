@@ -2,12 +2,12 @@
 
 [![Platform: Android](https://img.shields.io/badge/Platform-Android%20%7C%20Termux-00f0ff?style=for-the-badge&logo=android&logoColor=black)](https://termux.dev)
 [![Shell: ZSH](https://img.shields.io/badge/Shell-Zsh%205.9-7928ca?style=for-the-badge&logo=gnu-bash&logoColor=white)](https://www.zsh.org/)
-[![Prompt: Dual-Engine](https://img.shields.io/badge/Prompt-Starship%20%2F%20P10k-ff0080?style=for-the-badge&logo=starship&logoColor=white)](https://starship.rs)
+[![Prompt: Starship](https://img.shields.io/badge/Prompt-Starship%20Sovereign-ff0080?style=for-the-badge&logo=starship&logoColor=white)](https://starship.rs)
 [![Architecture: Modular Profiles](https://img.shields.io/badge/Architecture-Modular%20Profiles-f6e05e?style=for-the-badge&logo=buffer&logoColor=black)](./docs/PROFILES.md)
 [![Security: OpenSSF](https://img.shields.io/badge/Security-OpenSSF%20Hardened-48bb78?style=for-the-badge&logo=shield&logoColor=white)](./SECURITY.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](./LICENSE)
 
-> **Transform standard Android Termux into an ergonomic, desktop-class mobile development workstation featuring swappable touch-key profiles, a live dual-engine prompt switchboard, dynamic tab title sentinel, modular drop-in shell extensions, and a zero-password peer workstation bridge.**
+> **Transform standard Android Termux into an ergonomic, desktop-class mobile development workstation featuring swappable touch-key profiles, a curated Starship prompt switchboard, dynamic tab title sentinel, modular drop-in shell extensions, and a zero-password peer workstation bridge.**
 
 ---
 
@@ -40,10 +40,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/karansinghverma979/Termux-
 ┌────────────────────────────────────────────────────────────────────────┐
 │                  ⚡ THE TERMUX-WORKBENCH ARCHITECTURE                  │
 ├───────────────────┬───────────────────┬────────────────────────────────┤
-│ 🎮 PROFILE ENGINE │ 🎨 DUAL PROMPT    │ 🏷️ TAB TITLE SENTINEL          │
-│ Swappable Touch   │ Live Switch:      │ Dynamic Context: ⚡ git, ⚡ vim│
-│ Grids: Dev, Vim,  │ Starship ◄► P10k  │ Sticky Tags: title -Name dev   │
-│ Sysadmin Layouts  │ 12 Mobile Presets │ Error Sentinel: ❌ on failure  │
+│ 🎮 PROFILE ENGINE │ 🎨 STARSHIP SUITE │ 🏷️ TAB TITLE SENTINEL          │
+│ Swappable Touch   │ Curated Presets:  │ Dynamic Context: ⚡ git, ⚡ vim│
+│ Grids: Dev, Vim,  │ 12 Mobile Themes  │ Sticky Tags: title -Name dev   │
+│ Sysadmin Layouts  │ FZF / Blacklist   │ Error Sentinel: ❌ on failure  │
 ├───────────────────┴───────────────────┴────────────────────────────────┤
 │ 💻 PEER WORKSTATION BRIDGE : Sub-second dynamic IP & hotspot discovery │
 │ Zero-password Ed25519 pairing • 1-key reconnect: peer (or motobook)    │
@@ -87,20 +87,14 @@ workbench profile sysadmin   # Remote Server Grid (Sudo, pipes, SSH, background 
 
 ---
 
-### 2. 🎨 Dual-Engine Prompt Suite (Starship ◄► Powerlevel10k)
+### 2. 🎨 Sovereign Starship Prompt Suite
 
-Seamlessly transition between prompt engines without restarting your shell:
+Termux-Workbench standardizes 100% on **Starship** across both Android Termux and Motobook Windows:
 
-```bash
-use-starship    # Instant switch to Starship
-use-p10k        # Instant switch to Powerlevel10k
-```
-
-* **Interactive Fuzzy Theme Pickers**:
-  * Run `chship` (or `workbench theme`) to launch a fuzzy `fzf` picker across **12 curated mobile themes** (`tokyo-night`, `catppuccin-powerline`, `gruvbox-rainbow`, `bracketed-segments`, `pure-preset`, `jetpack`, etc.).
-  * Run `chp10k` to switch Powerlevel10k presets or trigger the configuration wizard.
+* **Interactive Fuzzy Theme Picker**:
+  * Run `chship` (or `workbench theme`) to launch a fuzzy `fzf` picker across **12 curated mobile themes** (`tokyo-night`, `catppuccin-powerline`, `pastel-powerline`, `gruvbox-rainbow`, `bracketed-segments`, `pure-preset`, `jetpack`, `nerd-font-symbols`, etc.).
 * **Smart Theme Blacklisting Engine**:
-  * Run `rmship` (or `rmp10k`) on any theme you dislike. It will permanently blacklist the preset in `~/.config/*_disliked.txt` and rotate to an alternative sleek theme.
+  * Run `rmship` on any theme you dislike. It will permanently blacklist the preset in `~/.config/starship_disliked.txt` and dynamically rotate to an alternative sleek theme.
 
 ---
 
@@ -150,7 +144,7 @@ peer                     # Automatically discovers and SSHs into your PC
 ├── 00-core.zsh          # Shell history, completions, and environment exports
 ├── 10-telemetry.zsh     # Centered boot telemetry radar and SSH supervision
 ├── 20-titles.zsh        # Sticky workspace tab titles and process-aware tracking
-├── 30-prompts.zsh       # Starship & Powerlevel10k theme switchboard & font switcher
+├── 30-prompts.zsh       # Starship preset switchboard & font switcher
 ├── 40-tmux.zsh          # Session control suite and auto-attach
 ├── 50-peer-bridge.zsh   # Dynamic workstation auto-discovery and Ed25519 pairing
 └── 60-aliases.zsh       # Personal shorthand and productivity aliases
@@ -161,8 +155,9 @@ peer                     # Automatically discovers and SSHs into your PC
 | :--- | :--- |
 | `workbench status` | Display active profile, prompt engine, active Nerd Font, and peer workstation telemetry. |
 | `workbench profile [name]` | Interactive FZF selector or direct switch between `dev`, `vim`, and `sysadmin`. |
-| `workbench theme` | Interactive prompt theme switcher (`chship` / `chp10k`). |
+| `workbench theme` | Interactive prompt theme switcher (`chship`). |
 | `workbench font [name]` | Interactive FZF selector or direct switch across installed Nerd Fonts (`chfont`). |
+| `workbench pkg [install\|check]` | Audit or install modern DevOps toolchains (`fastfetch`, `termux-api`, `ripgrep`, `fd`, `eza`, `lazygit`, `gh`, Python, net-tools, etc.). |
 | `workbench update` | Pull latest updates from GitHub and reload settings. |
 | `workbench backup` | Create a timestamped configuration archive in `~/backups/`. |
 | `workbench restore <file>` | Rollback configuration from a backup archive. |
@@ -177,7 +172,7 @@ Termux-Workbench is completely decoupled from machine-specific paths and user cr
 | :--- | :--- | :--- |
 | [`~/.peer_pc.env`](config/peer_pc.env.example) | Workstation Credentials | Set your PC's IP, username, port, and public key. |
 | [`~/.termux/termux.properties`](config/termux.properties) | Touch Extra Keys & UI | Change button icons, swipe-up macros, cursor blink, and colors. |
-| [`~/.termux/fonts/`](config/) | Nerd Font Vault | Swappable monospace Nerd Fonts (`MesloLGS`, `JetBrainsMono`, `CaskaydiaCove`). |
+| [`~/.termux/fonts/`](config/fonts/) | Nerd Font Vault | Bundled `JetBrainsMono NF Bold` (Windows Terminal 1:1 match) & `SemiBold`. |
 | [`~/.nanorc`](config/.nanorc) | Hardened Nano Config | Line numbers, AMOLED styling, smooth scrolling, and tab-to-spaces. |
 | [`~/.config/terminal_titles.json`](config/terminal_titles.json) | Tab Title Registry | Add or edit custom workspace tags (`title -Name <k> -Value <v>`). |
 | [`~/.tmux.conf`](config/.tmux.conf) | Mobile Tmux Runtime | Touch mouse support, zero escape delay, vim navigation splits. |
@@ -193,9 +188,9 @@ Termux-Workbench is completely decoupled from machine-specific paths and user cr
 
 ## 📦 Multi-Pathway Installation & Matrix Management
 
-### Pathway A: 1-Line Automated Installer (Recommended)
+### Pathway A: 1-Line Turnkey Installer (Fresh Termux Bootstrap)
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/karansinghverma979/Termux-Workbench/main/install.sh)"
+pkg update -y && pkg install -y git curl && bash -c "$(curl -fsSL https://raw.githubusercontent.com/karansinghverma979/Termux-Workbench/main/install.sh)"
 ```
 
 ### Pathway B: Git Clone & Local Development
@@ -217,7 +212,7 @@ workbench restore <file.tar.gz>  # Restores configs and reloads shell
 
 **Termux-Workbench** is the direct successor to **Project Legacy (2020–2025)**:
 * **The 2020–2025 Era (`Termux-Extra-Keys`)**: Born as a personal terminal environment created by Karan Singh Verma. It featured Oh-My-Zsh with the `mira` and `agnoster` themes, the "Queen" / "Sarika" startup protocol, `lolcat` formatting, and early extra-key mappings.
-* **The Modern Era (`Termux-Workbench`)**: Evolved into an extensible, profile-driven mobile terminal operating environment. It introduces swappable touch-key profiles, the dual Starship/P10k prompt engine, dynamic workspace tab sentinel, mobile tmux touch suite, and automated peer workstation bridge.
+* **The Modern Era (`Termux-Workbench`)**: Evolved into an extensible, profile-driven mobile terminal operating environment. It introduces swappable touch-key profiles, the sovereign Starship prompt engine, dynamic workspace tab sentinel, mobile tmux touch suite, and automated peer workstation bridge.
 * Read the full version history in [CHANGELOG.md](CHANGELOG.md).
 * Historical files are preserved in [`legacy/`](legacy/).
 

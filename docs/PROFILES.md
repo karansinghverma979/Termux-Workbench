@@ -82,7 +82,7 @@ Rather than hacking your main `~/.zshrc`, all custom commands, functions, and to
 ├── 00-core.zsh          # Shell history, completions, and environment exports
 ├── 10-telemetry.zsh     # Centered boot telemetry radar and SSH supervision
 ├── 20-titles.zsh        # Sticky workspace tab titles and process-aware tracking
-├── 30-prompts.zsh       # Starship & Powerlevel10k theme switchboard
+├── 30-prompts.zsh       # Starship preset switchboard
 ├── 40-tmux.zsh          # Session control suite and auto-attach
 ├── 50-peer-bridge.zsh   # Dynamic workstation auto-discovery and Ed25519 pairing
 └── 60-aliases.zsh       # Personal shorthand and productivity aliases

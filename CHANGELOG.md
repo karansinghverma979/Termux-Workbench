@@ -5,22 +5,32 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
-## [2.1.0] - 2026-09-20 (The Modular Era)
+## [2.2.0] - 2026-09-22 (Turnkey Installer & Font Parity)
 
 ### Added
-- **Modular Shell Architecture (`modules/`)**: Decoupled monolithic `.zshrc` into isolated, drop-in modules (`00-core`, `10-telemetry`, `20-titles`, `30-prompts`, `40-tmux`, `50-peer-bridge`, `60-aliases`).
-- **Swappable Profile Engine (`profiles/`)**:
-  - `dev`: Standard fullstack mobile development with tactile Unicode icons.
-  - `vim`: Modal text editing layout featuring `:w`, `:wq`, `ESC`, and directionals.
-  - `sysadmin`: Remote administration layout featuring SSH, pipes, modifiers, and system signals.
-- **Unified `workbench` CLI**:
-  - `workbench status`: Displays active profile, theme, and peer workstation telemetry.
-  - `workbench profile <name>`: Instantly swaps touch extra-keys layout and reloads settings.
-  - `workbench update`: Pulls upstream changes from GitHub and triggers atomic reload.
-  - `workbench backup` / `workbench restore`: Built-in snapshot and rollback manager.
-- **Documentation**: Added [`docs/PROFILES.md`](docs/PROFILES.md) detailing the profile engine and workflow customization.
+- **Turnkey Unattended Bootstrap (`install.sh`)**:
+  - Self-cloning pipe-bootstrap: Enables true 1-command fresh Termux installation via `curl | bash` with automatic repo staging.
+  - Automated SSH key federation: Pre-authorizes Motobook workstation key in `~/.ssh/authorized_keys`, generates local Termux client Ed25519 key, starts `sshd` on port 8022, and acquires CPU `termux-wake-lock`.
+  - Automated storage permission request (`termux-setup-storage`) and Termux:API telemetry health check.
+- **JetBrains Mono Bold Font Parity**:
+  - Standardized default terminal font to **JetBrainsMono NF Bold** across both Windows Terminal and Android Termux (`JetBrainsMonoNF-Bold.ttf`).
+  - Bundled font assets in `config/fonts/` for offline and immediate deployment without network 404 risk.
+  - Automatic `no-nerd-font` preset fallback if font is reset or running headless.
+- **New CLI Subcommands**:
+  - `workbench ssh`: Live SSH daemon status, IP discovery, active sessions, and pairing diagnostics.
+  - `workbench pkg [install|check]`: Comprehensive package audit and installer for 32+ essential tools (`fastfetch`, `eza`, `ripgrep`, `fd`, `lazygit`, `gh`, `termux-api`).
+- **Universal Mobile Nano Configuration**:
+  - Enforced `export EDITOR="nano"` and `export VISUAL="nano"` across `.zshrc` and `00-core.zsh`.
+  - Deployed mobile-hardened `.nanorc` with touch scrolling, line numbers, AMOLED colors, and isolated `~/.nano_backups`.
 
 ---
+
+## [2.1.0] - 2026-09-22 (Sovereign Starship Standardization)
+
+### Changed
+- **Sovereign Prompt Standard**: Completely eradicated Powerlevel10k (`p10k`) and background daemon overhead (`gitstatusd`). Standardized 100% on **Starship** across both Android Termux and Motobook Windows.
+- **Architectural Cleanup**: Removed `~/.powerlevel10k`, `~/.p10k.zsh`, dual-engine state toggles (`.prompt_engine`), and p10k switching aliases (`chp10k`, `rmp10k`, `use-p10k`).
+- **Streamlined Prompt Management**: Refactored `30-prompts.zsh` and `workbench theme` into a pure Starship preset selector (`chship`) and blacklist governor (`rmship`).
 
 ## [2.0.0] - 2026-09-20 (The Modern Workbench)
 

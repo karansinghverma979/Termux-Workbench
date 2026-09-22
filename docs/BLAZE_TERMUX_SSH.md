@@ -20,7 +20,7 @@
 │ OS: Windows 11 Pro                │ OS: Android 14 / Termux            │
 │ Framework: Blaze-Termux-SSH       │ Framework: Termux-Workbench        │
 │ SSH Inbound: Port 22              │ SSH Daemon: Port 8022 (sshd)       │
-│ Profiles: blaze_profile.ps1       │ Shell: Zsh + Starship / P10k       │
+│ Profiles: blaze_profile.ps1       │ Shell: Zsh + Starship              │
 ├───────────────────────────────────┴────────────────────────────────────┤
 │ 🔗 FEDERATION HIGHWAYS:                                                │
 │ 1. Wireless ADB (Port 5555) ── Root Telemetry, Key Injection, Recovery │

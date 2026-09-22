@@ -12,11 +12,8 @@ id_ed25519*
 .zsh_history
 .bash_history
 .cache/
-.p10k_disliked.txt
-.p10k_current_theme.txt
 starship_disliked.txt
 starship_current_theme.txt
-.prompt_engine
 .ssh_last_client
 
 # Local Backups
